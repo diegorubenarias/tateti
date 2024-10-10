@@ -14,10 +14,12 @@
       <button id="two-players">Two Players</button>
       <button id="vs-ia">Vs IA Player</button>
     </div>
+    
     <div id="app">
+      
       <div >
-        <div id="game-status">Player X's turn</div>
-        <div id="board" class="board"></div>
+        <div id="game-status" aria-live="assertive">Player X's turn</div>
+        <div id="board" class="board" role="grid" aria-label="Tic-Tac-Toe Board"></div>
       </div>
       <div >
         <button id="restart-btn">Restart Game</button>

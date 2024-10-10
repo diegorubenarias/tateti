@@ -14,10 +14,25 @@ class BoardService{
         boardElement.innerHTML = ''; // clean board
         this.board.cells.forEach((cell, index) => {
           const cellElement = document.createElement('div');
+          cellElement.setAttribute("role", "gricell");
+          cellElement.setAttribute("tabindex", "0");
+          cellElement.setAttribute("aria-live","polite");
+          //cellElement.setAttribute("aria-label","Empty");
+          // Actualizar el aria-label para los lectores de pantalla
+          cellElement.setAttribute('aria-label',cell ? `in cell ${index}` : "Empty");
+         
           cellElement.classList.add('cell');
           cellElement.dataset.index = index; // set index for cell
           cellElement.textContent = cell ? cell : '';
           cellElement.addEventListener('click', (event) => this.handleCellClick(event));
+          cellElement.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              //game.handleTurn(index);
+              const event = new CustomEvent("keyMark", {detail: {index: parseInt(index)}});
+              document.dispatchEvent(event);
+            }
+          });
+
           boardElement.appendChild(cellElement);
         });
       }
@@ -30,6 +45,17 @@ class BoardService{
           document.dispatchEvent(event);
         }
       }
+
+      handleCellAssistive(event) {
+        document.querySelectorAll('.cell').forEach((cell, index) => {
+            cell.addEventListener('keydown', (event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                game.handleTurn(index);
+              }
+            });
+          });
+      }
+      
 
       markCell(index, symbol) {
         if (!this.board.cells[index]) {

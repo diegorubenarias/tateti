@@ -18,6 +18,7 @@ class GameService {
         document.getElementById('replay-btn').addEventListener('click', () => this.replayLastGame());
         document.getElementById('new-btn').addEventListener('click', () => this.newGame());
         document.addEventListener("handleTurn", event => this.handleTurn(event.detail.index));
+        document.addEventListener("keyMark", event => this.handleTurn(event.detail.index));
         if (this.game.isAI && this.currentPlayer === 'O') {
             this.aiMove();
           }
@@ -51,7 +52,9 @@ class GameService {
       }
     
       endGame(message) {
-        document.getElementById('game-status').textContent = message;
+        const statusElement = document.getElementById('game-status');
+        statusElement.textContent = message;
+        statusElement.setAttribute('aria-label', message);
         this.isGameOver = true;
       }
     

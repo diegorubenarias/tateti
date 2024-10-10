@@ -1,8 +1,8 @@
 import "./styles.css";
-import Player from "./models/player.model";
-import Board from "./models/board.model";
-import Game from "./models/game.model";
-import GameService from "./services/game.service";
+const Player = require("./models/player.model");
+const Board = require("./models/board.model");
+const Game = require("./models/game.model");
+const GameService = require("./services/game.service");
 
 class TicTacToeGame {
 

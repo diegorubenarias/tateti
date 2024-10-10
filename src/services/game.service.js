@@ -1,5 +1,4 @@
-import BoardService from "./board.service";
-import Game from "../models/game.model";
+const BoardService = require("./board.service");
 
 class GameService {
     constructor(game) {

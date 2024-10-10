@@ -10,7 +10,7 @@ class BoardService{
      * Render board
      */
     render() {
-         const boardElement = document.getElementById('board');
+        const boardElement = document.getElementById('board');
         boardElement.innerHTML = ''; // clean board
         this.board.cells.forEach((cell, index) => {
           const cellElement = document.createElement('div');
